@@ -173,3 +173,7 @@ CONTAINER ID        IMAGE                                             COMMAND   
 7ce666b91d9b        gcr.io/google_containers/pause-amd64:3.0          "/pause"                 3 hours ago         Up 3 hours                              k8s_POD_kube-proxy-172.17.8.103_kube-system_1e7461d2d2ed0697101672b948a16ba0_0
 9baa08d8067a        gcr.io/google_containers/hyperkube-amd64:v1.6.4   "/hyperkube kubele..."   3 hours ago         Up 3 hours                              kubelet
 ```
+
+- node-02からコンテナとして作ったNginxに接続できるかの確認
+  - `core@node-02 ~ $ curl http://10.244.70.2`
+  - `IPはkubectl describe podsで確認`
