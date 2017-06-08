@@ -27,10 +27,20 @@
 →途中で管理者パスワードが問われる（Macのsudoパスワードを入力）
 
 
-`$ kubectl cluster-info`
+- Clusterの構成を確認
+　　- `$ kubectl cluster-info`
+
 ```
 Kubernetes master is running at https://172.17.8.101
 KubeDNS is running at https://172.17.8.101/api/v1/proxy/namespaces/kube-system/services/kube-dns
 
 To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+```
+
+`$ kubectl get node`
+```
+NAME           STATUS                     AGE       VERSION
+172.17.8.101   Ready,SchedulingDisabled   22m       v1.6.4
+172.17.8.102   Ready                      19m       v1.6.4
+172.17.8.103   Ready                      16m       v1.6.4
 ```
