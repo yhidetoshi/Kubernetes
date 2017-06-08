@@ -27,8 +27,7 @@
 →途中で管理者パスワードが問われる（Macのsudoパスワードを入力）
 
 
-- Clusterの構成を確認
-　　- `$ kubectl cluster-info`
+　- `$ kubectl cluster-info`
 
 ```
 Kubernetes master is running at https://172.17.8.101
