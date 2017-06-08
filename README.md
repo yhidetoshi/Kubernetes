@@ -43,3 +43,44 @@ NAME           STATUS                     AGE       VERSION
 172.17.8.102   Ready                      19m       v1.6.4
 172.17.8.103   Ready                      16m       v1.6.4
 ```
+
+
+#### Podを作成する
+
+`$ cat pod-nginx.yaml`
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod
+spec:
+  containers:
+    - name: nginx-container
+      image: nginx
+      ports:
+      - containerPort: 80
+```
+
+`$ kubectl create -f pod-nginx.yaml`
+```
+pod "nginx-pod" created
+```
+
+`$ kubectl get pod`
+```
+NAME        READY     STATUS              RESTARTS   AGE
+nginx-pod   0/1       ContainerCreating   0          12s
+```
+
+Qitaより参照（わかりやすいので利用させて頂きます）: `http://qiita.com/Arturias/items/62499b961b5d7375f608`
+```
+いくつかのコンテナをグループ化したもの。Kubernets は Pod 単位で作成、開始、停止、削除といった操作を行う(コンテナ単位では操作しない)。 そのため、１つのコンテナを作成したいときも、「コンテナが１つ含まれるPod」を作成することになる。
+
+他に以下の特徴がある。
+
+Pod 内のコンテナは、同一ホスト上に配備される
+Pod 内のコンテナは、仮想NICやプロセステーブルを共有する
+→ つまり、同じIPを使えたり、互いのプロセスが見えたりする。
+
+```
