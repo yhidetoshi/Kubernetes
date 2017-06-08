@@ -132,3 +132,18 @@ Events:
   4m		4m		1	kubelet, 172.17.8.103	spec.containers{nginx-container}	Normal		Created		Created container with id 36aa8fb0b0496133a8d5e3ccfadfc632f7856a3a0200652b06d5504d6c7a2675
   4m		4m		1	kubelet, 172.17.8.103	spec.containers{nginx-container}	Normal		Started		Started container with id 36aa8fb0b0496133a8d5e3ccfadfc632f7856a3a0200652b06d5504d6c7a2675
 ```
+
+#### それぞれのコンテナOSにログインしてコンテナを確認する
+
+- core-01
+```
+core@node-01 ~ $ docker ps
+CONTAINER ID        IMAGE                                             COMMAND                  CREATED             STATUS              PORTS               NAMES
+d625f8663942        gcr.io/google_containers/k8s-dns-dnsmasq-amd64    "/usr/sbin/dnsmasq..."   3 hours ago         Up 3 hours                              k8s_dnsmasq_kube-dns-3612311663-3f5mp_kube-system_6d2a7399-4bff-11e7-a956-080027cc0fcb_0
+a7cb1f325e68        gcr.io/google_containers/k8s-dns-kube-dns-amd64   "/kube-dns --domai..."   3 hours ago         Up 3 hours                              k8s_kubedns_kube-dns-3612311663-3f5mp_kube-system_6d2a7399-4bff-11e7-a956-080027cc0fcb_0
+1388297ff10e        gcr.io/google_containers/k8s-dns-sidecar-amd64    "/sidecar --v=2 --..."   3 hours ago         Up 3 hours                              k8s_sidecar_kube-dns-3612311663-3f5mp_kube-system_6d2a7399-4bff-11e7-a956-080027cc0fcb_0
+2323a150154d        gcr.io/google_containers/pause-amd64:3.0          "/pause"                 3 hours ago         Up 3 hours                              k8s_POD_kube-dns-3612311663-3f5mp_kube-system_6d2a7399-4bff-11e7-a956-080027cc0fcb_0
+90d18d654e00        dd615ee13021                                      "/hyperkube proxy ..."   3 hours ago         Up 3 hours                              k8s_kube-proxy_kube-proxy-172.17.8.102_kube-system_1e7461d2d2ed0697101672b948a16ba0_0
+c302d3de32f4        gcr.io/google_containers/pause-amd64:3.0          "/pause"                 3 hours ago         Up 3 hours                              k8s_POD_kube-proxy-172.17.8.102_kube-system_1e7461d2d2ed0697101672b948a16ba0_0
+55c94dac0af8        gcr.io/google_containers/hyperkube-amd64:v1.6.4   "/hyperkube kubele..."   3 hours ago         Up 3 hours                              kubelet
+```
