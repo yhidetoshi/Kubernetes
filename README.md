@@ -147,3 +147,14 @@ a7cb1f325e68        gcr.io/google_containers/k8s-dns-kube-dns-amd64   "/kube-dns
 c302d3de32f4        gcr.io/google_containers/pause-amd64:3.0          "/pause"                 3 hours ago         Up 3 hours                              k8s_POD_kube-proxy-172.17.8.102_kube-system_1e7461d2d2ed0697101672b948a16ba0_0
 55c94dac0af8        gcr.io/google_containers/hyperkube-amd64:v1.6.4   "/hyperkube kubele..."   3 hours ago         Up 3 hours                              kubelet
 ```
+
+- core-02
+```
+core@node-02 ~ $ docker ps
+CONTAINER ID        IMAGE                                             COMMAND                  CREATED             STATUS              PORTS               NAMES
+36aa8fb0b049        nginx                                             "nginx -g 'daemon ..."   2 hours ago         Up 2 hours                              k8s_nginx-container_nginx-pod_default_57f76233-4c06-11e7-a956-080027cc0fcb_0
+2b6255a4879c        gcr.io/google_containers/pause-amd64:3.0          "/pause"                 2 hours ago         Up 2 hours                              k8s_POD_nginx-pod_default_57f76233-4c06-11e7-a956-080027cc0fcb_0
+0b303d04c726        dd615ee13021                                      "/hyperkube proxy ..."   3 hours ago         Up 3 hours                              k8s_kube-proxy_kube-proxy-172.17.8.103_kube-system_1e7461d2d2ed0697101672b948a16ba0_0
+7ce666b91d9b        gcr.io/google_containers/pause-amd64:3.0          "/pause"                 3 hours ago         Up 3 hours                              k8s_POD_kube-proxy-172.17.8.103_kube-system_1e7461d2d2ed0697101672b948a16ba0_0
+9baa08d8067a        gcr.io/google_containers/hyperkube-amd64:v1.6.4   "/hyperkube kubele..."   3 hours ago         Up 3 hours                              kubelet
+```
