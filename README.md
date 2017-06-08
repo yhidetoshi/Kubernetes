@@ -84,3 +84,51 @@ Pod 内のコンテナは、仮想NICやプロセステーブルを共有する
 → つまり、同じIPを使えたり、互いのプロセスが見えたりする。
 
 ```
+
+- Podの詳細確認
+```
+~/k/test-config ❯❯❯ kubectl describe pods nginx-pod
+Name:		nginx-pod
+Namespace:	default
+Node:		172.17.8.103/172.17.8.103
+Start Time:	Thu, 08 Jun 2017 13:52:58 +0900
+Labels:		<none>
+Annotations:	<none>
+Status:		Running
+IP:		10.244.70.2
+Controllers:	<none>
+Containers:
+  nginx-container:
+    Container ID:	docker://36aa8fb0b0496133a8d5e3ccfadfc632f7856a3a0200652b06d5504d6c7a2675
+    Image:		nginx
+    Image ID:		docker-pullable://nginx@sha256:41ad9967ea448d7c2b203c699b429abe1ed5af331cd92533900c6d77490e0268
+    Port:		80/TCP
+    State:		Running
+      Started:		Thu, 08 Jun 2017 13:53:41 +0900
+    Ready:		True
+    Restart Count:	0
+    Environment:	<none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from default-token-w9x7d (ro)
+Conditions:
+  Type		Status
+  Initialized 	True
+  Ready 	True
+  PodScheduled 	True
+Volumes:
+  default-token-w9x7d:
+    Type:	Secret (a volume populated by a Secret)
+    SecretName:	default-token-w9x7d
+    Optional:	false
+QoS Class:	BestEffort
+Node-Selectors:	<none>
+Tolerations:	<none>
+Events:
+  FirstSeen	LastSeen	Count	From			SubObjectPath				Type		Reason		Message
+  ---------	--------	-----	----			-------------				--------	------		-------
+  5m		5m		1	default-scheduler						Normal		Scheduled	Successfully assigned nginx-pod to 172.17.8.103
+  5m		5m		1	kubelet, 172.17.8.103	spec.containers{nginx-container}	Normal		Pulling		pulling image "nginx"
+  4m		4m		1	kubelet, 172.17.8.103	spec.containers{nginx-container}	Normal		Pulled		Successfully pulled image "nginx"
+  4m		4m		1	kubelet, 172.17.8.103	spec.containers{nginx-container}	Normal		Created		Created container with id 36aa8fb0b0496133a8d5e3ccfadfc632f7856a3a0200652b06d5504d6c7a2675
+  4m		4m		1	kubelet, 172.17.8.103	spec.containers{nginx-container}	Normal		Started		Started container with id 36aa8fb0b0496133a8d5e3ccfadfc632f7856a3a0200652b06d5504d6c7a2675
+```
