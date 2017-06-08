@@ -22,8 +22,11 @@
   -`$ git clone https://github.com/pires/kubernetes-vagrant-coreos-cluster.git`
 
 - クラスタの構築
+
 `$ cd kubernetes-vagrant-coreos-cluster`
+
 `$ NUM_NODES=3 MASTER_MEM=512 NODE_MEM=512 vagrant up`
+
 →途中で管理者パスワードが問われる（Macのsudoパスワードを入力）
 
 
