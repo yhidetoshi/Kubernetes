@@ -135,6 +135,21 @@ Events:
 
 #### それぞれのコンテナOSにログインしてコンテナを確認する
 
+- master
+```
+core@master ~ $ docker ps
+CONTAINER ID        IMAGE                                             COMMAND                  CREATED             STATUS              PORTS               NAMES
+ccd278462284        gcr.io/google_containers/hyperkube-amd64          "/hyperkube schedu..."   3 hours ago         Up 3 hours                              k8s_kube-scheduler_kube-scheduler-172.17.8.101_kube-system_189fefc4732931d3c7eeaa8553f068dd_0
+124eb4421e6c        gcr.io/google_containers/hyperkube-amd64          "/hyperkube proxy ..."   3 hours ago         Up 3 hours                              k8s_kube-proxy_kube-proxy-172.17.8.101_kube-system_876b5c028f7b1c10fde4d3e4a650343a_0
+b802a9262089        gcr.io/google_containers/hyperkube-amd64          "/hyperkube apiser..."   3 hours ago         Up 3 hours                              k8s_kube-apiserver_kube-apiserver-172.17.8.101_kube-system_7a6ee5ada1c80522663165ad94314e15_0
+33d2661fcfb9        gcr.io/google_containers/hyperkube-amd64          "/hyperkube contro..."   3 hours ago         Up 3 hours                              k8s_kube-controller-manager_kube-controller-manager-172.17.8.101_kube-system_789aa35ccf8d7b4ee999b5c5517294fa_0
+b04871b24b58        gcr.io/google_containers/pause-amd64:3.0          "/pause"                 3 hours ago         Up 3 hours                              k8s_POD_kube-apiserver-172.17.8.101_kube-system_7a6ee5ada1c80522663165ad94314e15_0
+6980efd8003b        gcr.io/google_containers/pause-amd64:3.0          "/pause"                 3 hours ago         Up 3 hours                              k8s_POD_kube-scheduler-172.17.8.101_kube-system_189fefc4732931d3c7eeaa8553f068dd_0
+173dbcaaab26        gcr.io/google_containers/pause-amd64:3.0          "/pause"                 3 hours ago         Up 3 hours                              k8s_POD_kube-proxy-172.17.8.101_kube-system_876b5c028f7b1c10fde4d3e4a650343a_0
+ec784a6bf7c9        gcr.io/google_containers/pause-amd64:3.0          "/pause"                 3 hours ago         Up 3 hours                              k8s_POD_kube-controller-manager-172.17.8.101_kube-system_789aa35ccf8d7b4ee999b5c5517294fa_0
+9d0cad460b7d        gcr.io/google_containers/hyperkube-amd64:v1.6.4   "/hyperkube kubele..."   3 hours ago         Up 3 hours                              kubelet
+```
+
 - core-01
 ```
 core@node-01 ~ $ docker ps
