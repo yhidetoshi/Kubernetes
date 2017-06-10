@@ -1,5 +1,6 @@
 # Kubernetes
 
+![Alt Text](https://github.com/yhidetoshi/Pictures/raw/master/Docker/kubernetes.png)
 
 ## セットアップ
 - 環境
