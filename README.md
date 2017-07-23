@@ -6,14 +6,14 @@
 - 環境
   - AWS
     - master
-      - `CoreOS : CoreOS-alpha-584.0.0-hvm (ami-00958f01)
-      - 10.0.1.154
+      - `CoreOS : CoreOS-alpha-584.0.0-hvm (ami-00958f01)`
+      - `10.0.1.154`
     - node1
-      - `CoreOS : CoreOS-alpha-584.0.0-hvm (ami-00958f01)
+      - `CoreOS : CoreOS-alpha-584.0.0-hvm (ami-00958f01)`
       - `10.0.1.200`
     - node2
-      - `CoreOS : CoreOS-alpha-584.0.0-hvm (ami-00958f01)
-      - ``  
+      - `CoreOS : CoreOS-alpha-584.0.0-hvm (ami-00958f01)`
+      - `10.0.1.83`
       
 
 ## 環境構築＆セットアップその２
