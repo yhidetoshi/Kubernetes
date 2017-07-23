@@ -18,6 +18,7 @@
       - `10.0.1.83`
       - hostname: node2
  
+ #### まずはCoreOS側の設定から行う
  - 3台にhostnameをひけるように設定
    - `/usr/share/oem/cloud-config.yml` 
    - `/etc/hosts`を記述するには書きの方法をとる
@@ -61,7 +62,7 @@ PING master (127.0.0.1) 56(84) bytes of data.
 1 packets transmitted, 1 received, 0% packet loss, time 0ms
 rtt min/avg/max/mdev = 0.021/0.021/0.021/0.000 ms
 ```
-
+- 次に `etcd`, `flannel` を設定していく
 
 ## 環境構築＆セットアップその２
 - 環境
