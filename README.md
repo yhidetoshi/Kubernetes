@@ -8,12 +8,15 @@
     - master
       - `CoreOS : CoreOS-alpha-584.0.0-hvm (ami-00958f01)`
       - `10.0.1.154`
+      - hostname: master
     - node1
       - `CoreOS : CoreOS-alpha-584.0.0-hvm (ami-00958f01)`
       - `10.0.1.200`
+      - hostname: node1
     - node2
       - `CoreOS : CoreOS-alpha-584.0.0-hvm (ami-00958f01)`
       - `10.0.1.83`
+      - hostname: node2
       
 
 ## 環境構築＆セットアップその２
