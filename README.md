@@ -2,7 +2,13 @@
 
 ![Alt Text](https://github.com/yhidetoshi/Pictures/raw/master/Docker/kubernetes.png)
 
-## セットアップ
+## 環境構築その１
+- 環境
+  - AWS
+    - `CoreOS : CoreOS-alpha-584.0.0-hvm (ami-00958f01) × 3`
+
+
+## 環境構築＆セットアップその２
 - 環境
   - Mac(10.12.2)
   - brew
