@@ -20,6 +20,9 @@
  
  - 3台にhostnameをひけるように設定
    - `/usr/share/oem/cloud-config.yml` 
+ 
+ - cloud-configを反映するコマンド
+   - `$ sudo coreos-cloudinit --from-file /usr/share/oem/cloud-config.yml`
 
 ## 環境構築＆セットアップその２
 - 環境
