@@ -17,7 +17,9 @@
       - `CoreOS : CoreOS-alpha-584.0.0-hvm (ami-00958f01)`
       - `10.0.1.83`
       - hostname: node2
-      
+ 
+ - 3台にhostnameをひけるように設定
+   - `/usr/share/oem/cloud-config.yml` 
 
 ## 環境構築＆セットアップその２
 - 環境
