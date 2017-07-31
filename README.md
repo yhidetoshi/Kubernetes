@@ -17,6 +17,11 @@
       - `CentOS7`
       - `10.0.1.60`
 
+- yum -y update
+- yum -y install docker
+- systemctl enable docker
+
+
 
 ## 環境構築その１
 - 環境
