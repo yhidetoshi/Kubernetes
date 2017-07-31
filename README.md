@@ -2,6 +2,22 @@
 
 ![Alt Text](https://github.com/yhidetoshi/Pictures/raw/master/Docker/kubernetes.png)
 
+## 環境構築その0
+- まずはCentOS7で環境を作ります
+
+- 環境
+  - AWS
+    - master
+      - `CentOS7`
+      - `10.0.1.251`
+    - Minion1
+      - `CentOS7`
+      - `10.0.1.223`
+    - Minion2
+      - `CentOS7`
+      - `10.0.1.60`
+
+
 ## 環境構築その１
 - 環境
   - AWS
