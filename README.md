@@ -2,7 +2,7 @@
 
 ![Alt Text](https://github.com/yhidetoshi/Pictures/raw/master/Docker/kubernetes.png)
 
-## 環境構築その0
+## 環境構築(AWS + Centos7のパターン)
 - まずはCentOS7で環境を作ります
 
 - 環境
@@ -36,7 +36,15 @@ FLANNEL_ETCD_PREFIX="/kube-centos/network"
 ```
 
 ##### kubelet設定
-- `/etc/kubernetes/kubelet`
+- `/etc/kubernetes/config`を編集
+```
+KUBE_LOGTOSTDERR="--logtostderr=true"
+KUBE_LOG_LEVEL="--v=0"
+KUBE_ALLOW_PRIV="--allow-privileged=false"
+KUBE_MASTER="--master=http://master:8080"```
+```
+
+- `/etc/kubernetes/kubelet`を編集
 ```
 KUBELET_ADDRESS="--address=master"
 KUBELET_HOSTNAME="--hostname-override=master"
@@ -45,6 +53,38 @@ KUBELET_POD_INFRA_CONTAINER="--pod-infra-container-image=registry.access.redhat.
 KUBELET_ARGS=""
 ```
 
+- `/etc/kubernetes/apiserver`を編集
+```
+KUBE_API_ADDRESS="--address=0.0.0.0"
+KUBE_API_PORT="--port=8080"
+KUBELET_PORT="--kubelet-port=10250"
+KUBE_ETCD_SERVERS="--etcd-servers=http://master:2379"
+KUBE_SERVICE_ADDRESSES="--service-cluster-ip-range=10.254.0.0/16"
+KUBE_API_ARGS=""
+```
+
+- `/etc/kubernetes/controller-manager`を編集
+```
+KUBE_CONTROLLER_MANAGER_ARGS="--service_account_private_key_file=/etc/kubernetes/serviceaccount.key"
+KUBELET_ADDRESSES="--machines=master,minion1,minion2"
+```
+
+- ` /etc/etcd/etcd.conf`を編集
+```
+# [member]
+ETCD_NAME=default
+ETCD_DATA_DIR="/var/lib/etcd/default.etcd"
+ETCD_LISTEN_CLIENT_URLS="http://0.0.0.0:2379"
+
+#[cluster]
+ETCD_ADVERTISE_CLIENT_URLS="http://0.0.0.0:2379"
+
+#[proxy]
+
+#[security]
+
+#[logging]
+```
 
 ## 環境構築その１(未完成)
 - 環境
@@ -108,7 +148,7 @@ rtt min/avg/max/mdev = 0.021/0.021/0.021/0.000 ms
 ```
 - 次に `etcd`, `flannel` を設定していく
 
-## 環境構築＆セットアップその２
+## 環境構築(Mac + Vagrantパターン)
 - 環境
   - Mac(10.12.2)
   - brew
