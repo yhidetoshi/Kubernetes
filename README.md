@@ -128,13 +128,42 @@ for SERVICES in kube-proxy kubelet docker flanneld; do
 done
 ```
 #### Masterから動作確認
-- ノード確認
+
+##### ノード確認
 ```
 # kubectl get nodes
 NAME                                            STATUS    AGE
 ip-10-0-1-223.ap-northeast-1.compute.internal   Ready     16h
 ip-10-0-1-60.ap-northeast-1.compute.internal    Ready     35m
 ```
+
+##### Pod作成
+
+- `pod-nginx.yaml`
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod
+spec:
+  containers:
+    - name: nginx-container
+      image: nginx
+      ports:
+      - containerPort: 80
+```
+
+- `# kubectl create -f pod-nginx.yaml`
+```
+pod "nginx-pod" created
+```
+
+- `# kubectl get pod`
+```
+NAME        READY     STATUS              RESTARTS   AGE
+nginx-pod   0/1       ContainerCreating   0          13s
+```
+ 
  
 
 ## 環境構築(Mac + Vagrantパターン)
