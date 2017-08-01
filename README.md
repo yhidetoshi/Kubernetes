@@ -17,13 +17,36 @@
       - `CentOS7`
       - `10.0.1.60`
 
-- yum -y update
-- yum -y install docker
-- systemctl enable docker
+- 3台のhostsファイル
+```
+10.0.1.251 master
+10.0.1.223 minion1
+10.0.1.60  minion2
+```
+
+### Masterの設定
+- `# yum -y update`
+- `# yum -y install docker kubernetes flannel`
+- `# systemctl enable docker`
+
+##### flannelファイルを編集: `/etc/sysconfig/flanneld`
+```
+FLANNEL_ETCD="http://master:2379"
+FLANNEL_ETCD_PREFIX="/kube-centos/network"
+```
+
+##### kubelet設定
+- `/etc/kubernetes/kubelet`
+```
+KUBELET_ADDRESS="--address=master"
+KUBELET_HOSTNAME="--hostname-override=master"
+KUBELET_API_SERVER="--api-servers=http://master:8080"
+KUBELET_POD_INFRA_CONTAINER="--pod-infra-container-image=registry.access.redhat.com/rhel7/pod-infrastructure:latest"
+KUBELET_ARGS=""
+```
 
 
-
-## 環境構築その１
+## 環境構築その１(未完成)
 - 環境
   - AWS
     - master
