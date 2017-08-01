@@ -86,67 +86,6 @@ ETCD_ADVERTISE_CLIENT_URLS="http://0.0.0.0:2379"
 #[logging]
 ```
 
-## 環境構築その１(未完成)
-- 環境
-  - AWS
-    - master
-      - `CoreOS : CoreOS-alpha-584.0.0-hvm (ami-00958f01)`
-      - `10.0.1.154`
-      - hostname: master
-    - node1
-      - `CoreOS : CoreOS-alpha-584.0.0-hvm (ami-00958f01)`
-      - `10.0.1.200`
-      - hostname: node1
-    - node2
-      - `CoreOS : CoreOS-alpha-584.0.0-hvm (ami-00958f01)`
-      - `10.0.1.83`
-      - hostname: node2
- 
- #### まずはCoreOS側の設定から行う
- - 3台にhostnameをひけるように設定
-   - `/usr/share/oem/cloud-config.yml` 
-   - `/etc/hosts`を記述するには書きの方法をとる
-```
-write_files:
-    - path: /run/systemd/system/etcd.service.d/10-oem.conf
-      permissions: 0644
-      content: |
-        [Service]
-        Environment=ETCD_PEER_ELECTION_TIMEOUT=1200
-+   - path: /etc/hosts
-+     content: |
-+        127.0.0.1 localhost
-+        127.0.0.1 master
-+        10.0.1.200 node1
-+        10.0.1.83 node2
-```
- - cloud-configを反映するコマンド
-   - `$ sudo coreos-cloudinit --from-file /usr/share/oem/cloud-config.yml`
-- 試しにPing
-```
-master oem # ping node1
-PING node1 (10.0.1.200) 56(84) bytes of data.
-64 bytes from node1 (10.0.1.200): icmp_seq=1 ttl=64 time=0.643 ms
-^C
---- node1 ping statistics ---
-1 packets transmitted, 1 received, 0% packet loss, time 0ms
-rtt min/avg/max/mdev = 0.643/0.643/0.643/0.000 ms
-master oem # ping node2
-PING node2 (10.0.1.83) 56(84) bytes of data.
-64 bytes from node2 (10.0.1.83): icmp_seq=1 ttl=64 time=0.997 ms
-^C
---- node2 ping statistics ---
-1 packets transmitted, 1 received, 0% packet loss, time 0ms
-rtt min/avg/max/mdev = 0.997/0.997/0.997/0.000 ms
-master oem # ping master
-PING master (127.0.0.1) 56(84) bytes of data.
-64 bytes from localhost (127.0.0.1): icmp_seq=1 ttl=64 time=0.021 ms
-^C
---- master ping statistics ---
-1 packets transmitted, 1 received, 0% packet loss, time 0ms
-rtt min/avg/max/mdev = 0.021/0.021/0.021/0.000 ms
-```
-- 次に `etcd`, `flannel` を設定していく
 
 ## 環境構築(Mac + Vagrantパターン)
 - 環境
@@ -327,3 +266,66 @@ CONTAINER ID        IMAGE                                             COMMAND   
 - node-02からコンテナとして作ったNginxに接続できるかの確認
   - `core@node-02 ~ $ curl http://10.244.70.2`
   - `IPはkubectl describe podsで確認`
+
+
+## 環境構築その１(未完成)
+- 環境
+  - AWS
+    - master
+      - `CoreOS : CoreOS-alpha-584.0.0-hvm (ami-00958f01)`
+      - `10.0.1.154`
+      - hostname: master
+    - node1
+      - `CoreOS : CoreOS-alpha-584.0.0-hvm (ami-00958f01)`
+      - `10.0.1.200`
+      - hostname: node1
+    - node2
+      - `CoreOS : CoreOS-alpha-584.0.0-hvm (ami-00958f01)`
+      - `10.0.1.83`
+      - hostname: node2
+ 
+ #### まずはCoreOS側の設定から行う
+ - 3台にhostnameをひけるように設定
+   - `/usr/share/oem/cloud-config.yml` 
+   - `/etc/hosts`を記述するには書きの方法をとる
+```
+write_files:
+    - path: /run/systemd/system/etcd.service.d/10-oem.conf
+      permissions: 0644
+      content: |
+        [Service]
+        Environment=ETCD_PEER_ELECTION_TIMEOUT=1200
++   - path: /etc/hosts
++     content: |
++        127.0.0.1 localhost
++        127.0.0.1 master
++        10.0.1.200 node1
++        10.0.1.83 node2
+```
+ - cloud-configを反映するコマンド
+   - `$ sudo coreos-cloudinit --from-file /usr/share/oem/cloud-config.yml`
+- 試しにPing
+```
+master oem # ping node1
+PING node1 (10.0.1.200) 56(84) bytes of data.
+64 bytes from node1 (10.0.1.200): icmp_seq=1 ttl=64 time=0.643 ms
+^C
+--- node1 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 0.643/0.643/0.643/0.000 ms
+master oem # ping node2
+PING node2 (10.0.1.83) 56(84) bytes of data.
+64 bytes from node2 (10.0.1.83): icmp_seq=1 ttl=64 time=0.997 ms
+^C
+--- node2 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 0.997/0.997/0.997/0.000 ms
+master oem # ping master
+PING master (127.0.0.1) 56(84) bytes of data.
+64 bytes from localhost (127.0.0.1): icmp_seq=1 ttl=64 time=0.021 ms
+^C
+--- master ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 0.021/0.021/0.021/0.000 ms
+```
+- 次に `etcd`, `flannel` を設定していく
