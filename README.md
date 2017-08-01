@@ -127,7 +127,14 @@ for SERVICES in kube-proxy kubelet docker flanneld; do
     systemctl status $SERVICES 
 done
 ```
- 
+#### Masterから動作確認
+- ノード確認
+```
+# kubectl get nodes
+NAME                                            STATUS    AGE
+ip-10-0-1-223.ap-northeast-1.compute.internal   Ready     16h
+ip-10-0-1-60.ap-northeast-1.compute.internal    Ready     35m
+```
  
 
 ## 環境構築(Mac + Vagrantパターン)
