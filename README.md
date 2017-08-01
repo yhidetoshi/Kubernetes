@@ -91,7 +91,7 @@ FLANNEL_ETCD="http://master:2379"
 FLANNEL_ETCD_PREFIX="/kube-centos/network"
 ```
 
-- 下記のシェルスクリプトを実行してそれぞれ起動する
+- それぞれのサービスを起動(下記のシェルスクリプトを実行)
 ```
 #!/sh/bin
 
@@ -102,6 +102,33 @@ for SERVICES in docker etcd kube-apiserver kube-controller-manager kube-schedule
 done
 ```
 
+#### Minionの設定
+
+- `# yum update -y`
+- `# yum -y install docker kubernetes flannel`
+
+- `/etc/sysconfig/flanneld`を編集（Masterと同じ内容にする）
+- `/etc/kubernetes/kubelet`　
+```
+KUBELET_ADDRESS="--address=0.0.0.0"
+KUBELET_PORT="--port=10250"
+KUBELET_HOSTNAME=""
+KUBELET_API_SERVER="--api-servers=http://master:8080"
+KUBELET_ARGS=""
+```
+
+- それぞれのサービスを起動(下記のシェルスクリプトを実行)
+```
+#!/sh/bin
+
+for SERVICES in kube-proxy kubelet docker flanneld; do 
+    systemctl restart $SERVICES
+    systemctl enable $SERVICES
+    systemctl status $SERVICES 
+done
+```
+ 
+ 
 
 ## 環境構築(Mac + Vagrantパターン)
 - 環境
