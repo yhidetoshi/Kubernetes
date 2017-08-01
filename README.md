@@ -29,11 +29,6 @@
 - `# yum -y install docker kubernetes flannel`
 - `# systemctl enable docker`
 
-##### flannelファイルを編集: `/etc/sysconfig/flanneld`
-```
-FLANNEL_ETCD="http://master:2379"
-FLANNEL_ETCD_PREFIX="/kube-centos/network"
-```
 
 ##### kubelet設定
 - `/etc/kubernetes/config`を編集
@@ -85,6 +80,18 @@ ETCD_ADVERTISE_CLIENT_URLS="http://0.0.0.0:2379"
 
 #[logging]
 ```
+
+- `# systemctl start etcd`
+- `# etcdctl mkdir /kube-centos/network`
+- `#etcdctl mk /kube-centos/network/config "{ \"Network\": \"172.30.0.0/16\", \"SubnetLen\": 24, \"Backend\": { \"Type\": \"vxlan\" } }"`
+
+##### flannelファイルを編集: `/etc/sysconfig/flanneld`
+```
+FLANNEL_ETCD="http://master:2379"
+FLANNEL_ETCD_PREFIX="/kube-centos/network"
+```
+
+
 
 
 ## 環境構築(Mac + Vagrantパターン)
