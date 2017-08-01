@@ -91,7 +91,16 @@ FLANNEL_ETCD="http://master:2379"
 FLANNEL_ETCD_PREFIX="/kube-centos/network"
 ```
 
+- 下記のシェルスクリプトを実行してそれぞれ起動する
+```
+#!/sh/bin
 
+for SERVICES in docker etcd kube-apiserver kube-controller-manager kube-scheduler flanneld; do
+    systemctl restart $SERVICES
+    systemctl enable $SERVICES
+    systemctl status $SERVICES
+done
+```
 
 
 ## 環境構築(Mac + Vagrantパターン)
