@@ -17,6 +17,9 @@
       - `CentOS7`
       - `10.0.1.60`
 
+`# kubectl --version`
+ > Kubernetes v1.5.2
+
 - 3台のhostsファイル
 ```
 10.0.1.251 master
