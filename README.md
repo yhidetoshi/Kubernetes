@@ -166,7 +166,9 @@ pod "nginx-pod" created
 NAME        READY     STATUS              RESTARTS   AGE
 nginx-pod   0/1       ContainerCreating   0          13s
 ```
- 
+
+`===============================
+`
 - deployment
 
 - `deployment-nginx.yaml`
