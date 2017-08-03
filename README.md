@@ -167,6 +167,37 @@ NAME        READY     STATUS              RESTARTS   AGE
 nginx-pod   0/1       ContainerCreating   0          13s
 ```
  
+- deployment
+
+- `deployment-nginx.yaml`
+```
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.7.9
+        ports:
+        - containerPort: 80
+```
+
+
+`# kubectl create -f deployment-nginx.yaml --record`
+> deployment "nginx-deployment" created
+
+`# kubectl get deployment`
+```
+NAME               DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
+nginx-deployment   2         2         2            0           16s
+```
  
 
 ## 環境構築(Mac + Vagrantパターン)
