@@ -198,7 +198,13 @@ spec:
 NAME               DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
 nginx-deployment   2         2         2            0           16s
 ```
- 
+
+`# kubectl get pods --show-labels`
+```
+NAME                                READY     STATUS    RESTARTS   AGE       LABELS
+nginx-deployment-4087004473-1px8p   1/1       Running   0          3m        app=nginx,pod-template-hash=4087004473
+nginx-deployment-4087004473-vc1dm   1/1       Running   0          3m        app=nginx,pod-template-hash=4087004473
+```
 
 ## 環境構築(Mac + Vagrantパターン)
 - 環境
