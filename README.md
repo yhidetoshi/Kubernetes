@@ -170,6 +170,41 @@ nginx-pod   0/1       ContainerCreating   0          13s
 - Podの削除
   - `# kubectl delete pod <POD_NAME>`
 
+- Podの詳細確認
+  - `# kubectl describe pods nginx-deployment-4087004473-1px8p`
+```
+Name:		nginx-deployment-4087004473-1px8p
+Namespace:	default
+Node:		ip-10-0-1-223.ap-northeast-1.compute.internal/10.0.1.223
+Start Time:	Thu, 03 Aug 2017 02:27:25 +0000
+Labels:		app=nginx
+		pod-template-hash=4087004473
+Status:		Running
+IP:		172.30.50.2
+Controllers:	ReplicaSet/nginx-deployment-4087004473
+Containers:
+  nginx:
+    Container ID:		docker://c926feff159eb273c8df8e238d1e59395867a578ff6ef10360c53fba6f4bd952
+    Image:			nginx:1.7.9
+    Image ID:			docker-pullable://docker.io/nginx@sha256:e3456c851a152494c3e4ff5fcc26f240206abac0c9d794affb40e0714846c451
+    Port:			80/TCP
+    State:			Running
+      Started:			Thu, 03 Aug 2017 02:27:54 +0000
+    Ready:			True
+    Restart Count:		0
+    Volume Mounts:		<none>
+    Environment Variables:	<none>
+Conditions:
+  Type		Status
+  Initialized 	True
+  Ready 	True
+  PodScheduled 	True
+No volumes.
+QoS Class:	BestEffort
+Tolerations:	<none>
+No events.
+```
+
 `===============================
 `
 - deployment
