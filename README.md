@@ -167,6 +167,9 @@ NAME        READY     STATUS              RESTARTS   AGE
 nginx-pod   0/1       ContainerCreating   0          13s
 ```
 
+- Podの削除
+  - `# kubectl delete pod <POD_NAME>`
+
 `===============================
 `
 - deployment
