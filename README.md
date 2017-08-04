@@ -280,6 +280,38 @@ spec:
     run: nginx
 ```
 
+### Deployment検証
+
+**deploymentを削除してノード上のコンテナが削除されるかの検証**
+
+- `# kubectl get deployment` (deploymentの一覧取得)
+```
+NAME               DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
+nginx-deployment   2         2         2            2           1d
+```
+
+- `# kubectl delete deployment nginx-deployment`(deploymentの一削除)
+> deployment "nginx-deployment" deleted
+
+- `# kubectl get deployment`
+> No resources found.
+
+**(deploymentを削除して)node側でコンテナが削除されているか確認**
+
+
+- `# docker ps` (deploymentを削除する前)
+```
+CONTAINER ID        IMAGE                                      COMMAND                  CREATED             STATUS              PORTS               NAMES
+c926feff159e        nginx:1.7.9                                "nginx -g 'daemon off"   27 hours ago        Up 27 hours                             k8s_nginx.b0df00ef_nginx-deployment-4087004473-1px8p_default_49ea4593-77f3-11e7-8a59-06839e14de9c_28cd889d
+7f59581a9910        gcr.io/google_containers/pause-amd64:3.0   "/pause"                 27 hours ago        Up 27 hours                             k8s_POD.b2390301_nginx-deployment-4087004473-1px8p_default_49ea4593-77f3-11e7-8a59-06839e14de9c_3b415bb9
+```
+
+- `# docker ps` (deploymentを削除した後)
+```
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+```
+
+
 
 ## 環境構築(Mac + Vagrantパターン)
 - 環境
