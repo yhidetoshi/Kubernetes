@@ -15,6 +15,10 @@
 ![Alt Text](https://github.com/yhidetoshi/Pictures/raw/master/Docker/k8s_v1.png)
 
 
+## Kubernetesのアーキテクチャ
+![Alt Text](https://github.com/yhidetoshi/Pictures/raw/master/Docker/k8s-architecture.png)
+(引用: goo.gl/jvcZi3content_copyCopy short URL)
+
 ## 環境構築(AWS + Centos7のパターン)
 - まずはCentOS7で環境を作ります
 
