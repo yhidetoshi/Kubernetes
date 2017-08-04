@@ -153,7 +153,6 @@ ip-10-0-1-60.ap-northeast-1.compute.internal    Ready     35m
     └── service.yaml
 ```
 
-
 ## Pod作成
 - いくつかのコンテナをグループ化したもの
 - KubernetsはPod単位で作成、開始、停止、削除といった操作を行う(コンテナ単位では操作しない)
@@ -229,9 +228,12 @@ Tolerations:	<none>
 No events.
 ```
 
-`===============================
-`
-- deployment
+## deployment
+
+- オペレーターが、どのようなコンテナを何台起動するかといった情報を`Spec`として`Kubernetes側`に渡す
+- `Scheduler`が、空きリソースを見ながらそれらをどのように配置するかを決定
+- 各ノードに常駐している`Kubelet`というプログラムがその決定に従ってコンテナを起動
+- `オペレーターが直接コンテナを起動するのではなく`、`必要とする状態をSpec として渡すと` Kubernetes側がクラスタの状態を Spec に合わせようする
 
 - `deployment-nginx.yaml`
 ```
