@@ -235,6 +235,12 @@ No events.
 - 各ノードに常駐している`Kubelet`というプログラムがその決定に従ってコンテナを起動
 - `オペレーターが直接コンテナを起動するのではなく`、`必要とする状態をSpec として渡すと` Kubernetes側がクラスタの状態を Spec に合わせようする
 
+#### DeploymentとPodの関係性
+- `Pod`の配備と冗長化を担当するのが`Deployment`
+- ある`Pod`について`Spec`で定義されたレプリカの数を維持する責任を負うのが`Replica Set`
+- `Replica Set`の配備・更新ポリシーを定義するのが`Deployment`
+
+
 - `deployment-nginx.yaml`
 ```
 apiVersion: extensions/v1beta1
