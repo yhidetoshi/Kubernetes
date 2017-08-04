@@ -139,6 +139,20 @@ NAME                                            STATUS    AGE
 ip-10-0-1-223.ap-northeast-1.compute.internal   Ready     16h
 ip-10-0-1-60.ap-northeast-1.compute.internal    Ready     35m
 ```
+→ これでMasterとMinionの環境セットアップが完了。
+
+まずは色々ためすために下記のように適当にディレクトリを作成
+```
+# tree work/.
+.
+├── deployment
+│   └── deployment-nginx.yaml
+├── pod
+│   └── pod-nginx.yaml
+└── service
+    └── service.yaml
+```
+
 
 ##### Pod作成
 
@@ -245,6 +259,27 @@ NAME                                READY     STATUS    RESTARTS   AGE       LAB
 nginx-deployment-4087004473-1px8p   1/1       Running   0          3m        app=nginx,pod-template-hash=4087004473
 nginx-deployment-4087004473-vc1dm   1/1       Running   0          3m        app=nginx,pod-template-hash=4087004473
 ```
+
+##### Service作成
+- `# kubectl create -f service.yaml`
+
+- `service.yaml` 
+```
+service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-nodeport
+spec:
+  type: NodePort
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    run: nginx
+```
+
 
 ## 環境構築(Mac + Vagrantパターン)
 - 環境
