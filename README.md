@@ -255,6 +255,7 @@ No events.
 - ある`Pod`について`Spec`で定義されたレプリカの数を維持する責任を負うのが`Replica Set`
 - `Replica Set`の配備・更新ポリシーを定義するのが`Deployment`
 
+![Alt Text](https://github.com/yhidetoshi/Pictures/raw/master/Docker/k8s-rs2.png)
 
 - `deployment-nginx.yaml`
 ```
