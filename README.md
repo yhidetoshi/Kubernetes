@@ -260,7 +260,12 @@ nginx-deployment-4087004473-1px8p   1/1       Running   0          3m        app
 nginx-deployment-4087004473-vc1dm   1/1       Running   0          3m        app=nginx,pod-template-hash=4087004473
 ```
 
-##### Service作成
+## Service作成
+- Minion上で動作する Network Proxyの設定単位
+  - NodePort
+    - 内部ネットワークの設定時に使う。
+    - selector でどのPodに紐づけるかを決める。
+
 - `# kubectl create -f service.yaml`
 
 - `service.yaml` 
@@ -276,8 +281,8 @@ spec:
   - port: 80
     protocol: TCP
     targetPort: 80
-  selector:
-    run: nginx
+  selector:     # <--- selectorでどのPodと紐づけるかを定義する
+    run: nginx
 ```
 
 ### Deployment検証
