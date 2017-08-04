@@ -27,13 +27,13 @@
 10.0.1.60  minion2
 ```
 
-### Masterの設定
+### [Masterの設定]
 - `# yum -y update`
 - `# yum -y install docker kubernetes flannel`
 - `# systemctl enable docker`
 
 
-##### kubelet設定
+##### [kubelet設定]
 - `/etc/kubernetes/config`を編集
 ```
 KUBE_LOGTOSTDERR="--logtostderr=true"
@@ -105,7 +105,7 @@ for SERVICES in docker etcd kube-apiserver kube-controller-manager kube-schedule
 done
 ```
 
-#### Minionの設定
+#### [Minionの設定]
 
 - `# yum update -y`
 - `# yum -y install docker kubernetes flannel`
