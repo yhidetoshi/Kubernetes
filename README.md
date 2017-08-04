@@ -259,7 +259,7 @@ No events.
 - ある`Pod`について`Spec`で定義されたレプリカの数を維持する責任を負うのが`Replica Set`
 - `Replica Set`の配備・更新ポリシーを定義するのが`Deployment`
 
-![Alt Text](https://github.com/yhidetoshi/Pictures/raw/master/Docker/k8s-rs2.png)
+![Alt Text](https://github.com/yhidetoshi/Pictures/raw/master/Docker/k8s_dep-rep.png)
 
 - `deployment-nginx.yaml`
 ```
@@ -303,6 +303,8 @@ nginx-deployment-4087004473-vc1dm   1/1       Running   0          3m        app
   - NodePort
     - 内部ネットワークの設定時に使う。
     - selector でどのPodに紐づけるかを決める。
+
+![Alt Text](https://github.com/yhidetoshi/Pictures/raw/master/Docker/k8s_service-dep.png)
 
 - `# kubectl create -f service.yaml`
 
