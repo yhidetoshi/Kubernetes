@@ -154,7 +154,7 @@ ip-10-0-1-60.ap-northeast-1.compute.internal    Ready     35m
 ```
 
 
-##### Pod作成
+## Pod作成
 
 - `pod-nginx.yaml`
 ```
@@ -162,6 +162,8 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: nginx-pod
+  labels:
+    name: test   # <-- Serviceで test を指定する。
 spec:
   containers:
     - name: nginx-container
@@ -276,13 +278,15 @@ kind: Service
 metadata:
   name: nginx-nodeport
 spec:
-  type: NodePort
+  selector:
+    name: test   # # <--- selectorでどのPodと紐づけるかを定義する
+  type: NodePort
   ports:
   - port: 80
     protocol: TCP
     targetPort: 80
-  selector:     # <--- selectorでどのPodと紐づけるかを定義する
-    run: nginx
+#  selector:     # <--- selectorでどのPodと紐づけるかを定義する
+#    run: nginx
 ```
 
 ### Deployment検証
