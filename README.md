@@ -2,6 +2,19 @@
 
 ![Alt Text](https://github.com/yhidetoshi/Pictures/raw/master/Docker/kubernetes.png)
 
+## Kubernetesとは
+
+- `Docker`の実行環境は一台のホストに閉じている
+- 同一ホスト内で動くコンテナ同士は、プライベートネットワーク経由でやりときができるが外部との接続はNATが必要
+  - --> コンテナの台数が多くなるとホスト間との連携が煩雑になり管理が困難、リソーススケールが難しい 
+
+**この問題を解決してくれるが `Kubernetes`**
+
+**Kubernetesは複数台のホストから構成される実行環境をまるで1台の実行環境に扱うことができる。**
+
+![Alt Text](https://github.com/yhidetoshi/Pictures/raw/master/Docker/k8s_v1.png)
+
+
 ## 環境構築(AWS + Centos7のパターン)
 - まずはCentOS7で環境を作ります
 
