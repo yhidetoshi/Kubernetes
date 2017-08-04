@@ -27,13 +27,13 @@
 10.0.1.60  minion2
 ```
 
-### [Masterの設定]
+## [Masterの設定]
 - `# yum -y update`
 - `# yum -y install docker kubernetes flannel`
 - `# systemctl enable docker`
 
 
-##### [kubelet設定]
+#### [kubelet設定]
 - `/etc/kubernetes/config`を編集
 ```
 KUBE_LOGTOSTDERR="--logtostderr=true"
@@ -105,7 +105,7 @@ for SERVICES in docker etcd kube-apiserver kube-controller-manager kube-schedule
 done
 ```
 
-#### [Minionの設定]
+## [Minionの設定]
 
 - `# yum update -y`
 - `# yum -y install docker kubernetes flannel`
@@ -155,6 +155,14 @@ ip-10-0-1-60.ap-northeast-1.compute.internal    Ready     35m
 
 
 ## Pod作成
+- いくつかのコンテナをグループ化したもの
+- KubernetsはPod単位で作成、開始、停止、削除といった操作を行う(コンテナ単位では操作しない)
+  - 1つのコンテナを作成したいときも、「コンテナが１つ含まれるPod」を作成することになる。
+
+- 特徴
+  - Pod 内のコンテナは、同一ホスト上に配備される
+  - Pod 内のコンテナは、仮想NICやプロセステーブルを共有する
+  - 同じIPを使えたり、互いのプロセスが見えたりする。
 
 - `pod-nginx.yaml`
 ```
