@@ -274,6 +274,8 @@ No events.
   - レプリカ数のみ変更の場合は新しいReplicaSetは作成せず、現在のReplicaSetのレプリカ数を変更
   - 新旧のPodともに共有するラベルを持っているため、ローリングアップデート中はServiceを通じて新旧のバージョンが混ざってサービスが提供される
   
+![Alt Text](https://github.com/yhidetoshi/Pictures/raw/master/Docker/k8s-deploy-fig.png)
+
 ![Alt Text](https://github.com/yhidetoshi/Pictures/raw/master/Docker/k8s-repli-controller.png)
   
 ### DeploymentとPodの関係性
