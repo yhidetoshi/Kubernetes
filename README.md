@@ -278,6 +278,8 @@ No events.
 
 ![Alt Text](https://github.com/yhidetoshi/Pictures/raw/master/Docker/k8s-repli-controller.png)
   
+![Alt Text](https://github.com/yhidetoshi/Pictures/raw/master/Docker/k8s-rolling.png) 
+ 
 ### DeploymentとPodの関係性
 - `Pod`の配備と冗長化を担当するのが`Deployment`
 - ある`Pod`について`Spec`で定義されたレプリカの数を維持する責任を負うのが`Replica Set`
