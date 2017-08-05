@@ -278,7 +278,7 @@ No events.
 
 ![Alt Text](https://github.com/yhidetoshi/Pictures/raw/master/Docker/k8s-repli-controller.png)
   
-![Alt Text](https://github.com/yhidetoshi/Pictures/raw/master/Docker/k8s-rolling.png) 
+![Alt Text](https://github.com/yhidetoshi/Pictures/raw/master/Docker/k8s-rolling2.png) 
  
 ### DeploymentとPodの関係性
 - `Pod`の配備と冗長化を担当するのが`Deployment`
