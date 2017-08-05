@@ -254,7 +254,16 @@ No events.
 
 ![Alt Text](https://github.com/yhidetoshi/Pictures/raw/master/Docker/k8s_deploy.png)
 
-#### DeploymentとPodの関係性
+### Deploymentの仕組み
+
+|リソース|役割|
+| :--- |:---|
+|Deployment|ReplicaSetを生成・管理してローリングアップデートやロールバックなどのデプロイ管理を行う|
+|ReplicaSet|同じ仕様のPodレプリカ数を管理|
+|Pod|アプリケーションを動かすための最小単位。一つ以上のコンテナと共有されたボリユームで構成される|
+
+
+### DeploymentとPodの関係性
 - `Pod`の配備と冗長化を担当するのが`Deployment`
 - ある`Pod`について`Spec`で定義されたレプリカの数を維持する責任を負うのが`Replica Set`
 - `Replica Set`の配備・更新ポリシーを定義するのが`Deployment`
