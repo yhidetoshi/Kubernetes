@@ -187,7 +187,7 @@ kind: Pod
 metadata:
   name: nginx-pod
   labels:
-    name: web-nginx
+    app: web-nginx
 spec:
   volumes:
     - name: data
