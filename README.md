@@ -375,7 +375,7 @@ spec:
     run: nginx
 ```
 
-- `# kubectl describe service nginx-nodeport` (app=web-nginx)で作成されているか確認
+- `# kubectl describe service nginx-nodeport` (app=web-nginx)で作成されているか確認 (srvice=svc と略せる)
 ```
 Name:			nginx-nodeport
 Namespace:		default
