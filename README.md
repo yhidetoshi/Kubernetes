@@ -161,9 +161,13 @@ ip-10-0-1-60.ap-northeast-1.compute.internal    Ready     35m
 まずは色々ためすために下記のように適当にディレクトリを作成
 ```
 # tree work/.
-.
 ├── deployment
 │   └── deployment-nginx.yaml
+├── lb
+│   └── nginx-lb.yaml
+├── nodeport
+│   ├── test-ingress.yml
+│   └── test-np.yaml
 ├── pod
 │   └── pod-nginx.yaml
 └── service
@@ -422,6 +426,42 @@ c926feff159e        nginx:1.7.9                                "nginx -g 'daemon
 ```
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 ```
+
+- `test-np.yaml`
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: test-np
+spec:
+  selector:
+    run: web-nginx
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 31707
+      name: http
+```
+
+- `test-ingress.yml`
+```
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: test-ingress
+spec:
+  backend:
+    serviceName: web-nginx
+    servicePort: 80
+```
+
+- `# kubectl get ing`
+```
+NAME           HOSTS     ADDRESS   PORTS     AGE
+test-ingress   *                   80        2m
+``
 
 
 
