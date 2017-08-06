@@ -187,13 +187,19 @@ kind: Pod
 metadata:
   name: nginx-pod
   labels:
-    name: test   # <-- Serviceで test を指定する。
+    name: web-nginx
 spec:
+  volumes:
+    - name: data
+      emptyDir: {}
   containers:
     - name: nginx-container
       image: nginx
       ports:
       - containerPort: 80
+      volumeMounts:
+      - mountPath: /nginx-test-data
+        name: data
 ```
 
 - `# kubectl create -f pod-nginx.yaml`
@@ -298,7 +304,7 @@ spec:
   template:
     metadata:
       labels:
-        app: nginx
+        app: web-nginx
     spec:
       containers:
       - name: nginx
@@ -319,10 +325,27 @@ nginx-deployment   2         2         2            0           16s
 
 `# kubectl get pods --show-labels`
 ```
+# kubectl get pods --show-labels
 NAME                                READY     STATUS    RESTARTS   AGE       LABELS
-nginx-deployment-4087004473-1px8p   1/1       Running   0          3m        app=nginx,pod-template-hash=4087004473
-nginx-deployment-4087004473-vc1dm   1/1       Running   0          3m        app=nginx,pod-template-hash=4087004473
+nginx-deployment-3288645284-w2nw7   1/1       Running   0          11m       app=web-nginx,pod-template-hash=3288645284
+nginx-deployment-3288645284-xw778   1/1       Running   0          11m       app=web-nginx,pod-template-hash=3288645284
 ```
+
+- `--selector`オプションで設定したラベルを指定して関連リソースを確認
+```
+# kubectl get deployments,replicasets,pods --selector app=web-nginx
+NAME                      DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
+deploy/nginx-deployment   2         2         2            2           4m
+
+NAME                             DESIRED   CURRENT   READY     AGE
+rs/nginx-deployment-3288645284   2         2         2         4m
+
+NAME                                   READY     STATUS    RESTARTS   AGE
+po/nginx-deployment-3288645284-w2nw7   1/1       Running   0          4m
+po/nginx-deployment-3288645284-xw778   1/1       Running   0          4m
+```
+
+
 
 ## Service作成
 - Minion上で動作する Network Proxyの設定単位
@@ -355,14 +378,16 @@ spec:
 
 ### Deployment検証
 
+# kubectl create -f deployment-nginx.yaml
+
 **deploymentを削除してノード上のコンテナが削除されるかの検証**
 
 - `# kubectl get deployment` (deploymentの一覧取得)
 ```
 NAME               DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
 nginx-deployment   2         2         2            2           1d
-```
 
+```
 - `# kubectl delete deployment nginx-deployment`(deploymentの一削除)
 > deployment "nginx-deployment" deleted
 
