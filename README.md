@@ -359,21 +359,35 @@ po/nginx-deployment-3288645284-xw778   1/1       Running   0          4m
 
 - `service.yaml` 
 ```
-service.yaml
 apiVersion: v1
 kind: Service
 metadata:
   name: nginx-nodeport
+  labels:
+    app: web-nginx
 spec:
-  selector:
-    name: test   # # <--- selectorでどのPodと紐づけるかを定義する
-  type: NodePort
+  type: NodePort
   ports:
   - port: 80
     protocol: TCP
     targetPort: 80
-#  selector:     # <--- selectorでどのPodと紐づけるかを定義する
-#    run: nginx
+  selector:
+    run: nginx
+```
+
+- `# kubectl describe service nginx-nodeport` (app=web-nginx)で作成されているか確認
+```
+Name:			nginx-nodeport
+Namespace:		default
+Labels:			app=web-nginx
+Selector:		run=nginx
+Type:			NodePort
+IP:			10.254.108.148
+Port:			<unset>	80/TCP
+NodePort:		<unset>	30644/TCP
+Endpoints:		<none>
+Session Affinity:	None
+No events.
 ```
 
 ### Deployment検証
