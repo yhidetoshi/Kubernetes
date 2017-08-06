@@ -396,7 +396,7 @@ No events.
 
 ### Deployment検証
 
-# kubectl create -f deployment-nginx.yaml
+- `# kubectl create -f deployment-nginx.yaml`
 
 **deploymentを削除してノード上のコンテナが削除されるかの検証**
 
@@ -426,6 +426,8 @@ c926feff159e        nginx:1.7.9                                "nginx -g 'daemon
 ```
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 ```
+
+## LoadBalancer
 
 - `test-np.yaml`
 ```
@@ -463,6 +465,24 @@ NAME           HOSTS     ADDRESS   PORTS     AGE
 test-ingress   *                   80        2m
 ``
 
+- app=web-nginx のLoadBalancerの確認
+  - Endpointがレプリカで作成したPodのアドレスになっている
+
+- `# kubectl describe svc test-lb`
+
+```
+Name:			test-lb
+Namespace:		default
+Labels:			<none>
+Selector:		app=web-nginx
+Type:			LoadBalancer
+IP:			10.254.50.69
+Port:			<unset>	80/TCP
+NodePort:		<unset>	30800/TCP
+Endpoints:		172.30.50.2:80,172.30.56.2:80
+Session Affinity:	None
+No events.
+```
 
 
 ## 環境構築(Mac + Vagrantパターン)
