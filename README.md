@@ -463,7 +463,7 @@ spec:
 ```
 NAME           HOSTS     ADDRESS   PORTS     AGE
 test-ingress   *                   80        2m
-``
+```
 
 - app=web-nginx のLoadBalancerの確認
   - Endpointがレプリカで作成したPodのアドレスになっている
