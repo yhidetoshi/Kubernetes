@@ -2,6 +2,31 @@
 
 ![Alt Text](https://github.com/yhidetoshi/Pictures/raw/master/Docker/kubernetes.png)
 
+#### 検証した項目...
+- kubernetes
+  - master1台/Minion(node)2台の構築
+    - etcd
+    - flannel
+    - kubelt
+    - kubeapi
+    - kube-proxy
+  - Replicaset
+  - deployment
+    - pod
+    - Volume永続化
+    - replication
+  - pod
+    - 単体作成
+    - 片方削除のレプリカ機能確認
+  - service
+    - ingress
+    - nodeport
+    - lb(AWSだと利用できない...)
+  - ALB接続
+    - PC-localからNginxの接続
+    - nodeport経由のPod2台への接続
+
+
 ## Kubernetesとは
 
 - `Docker`の実行環境は一台のホストに閉じている
