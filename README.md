@@ -553,6 +553,44 @@ tcp        0      0 10.0.1.60:80            0.0.0.0:*               LISTEN
 ```
 ---> NodePortを作成することにより80番がListenしたので、ここをめがけて AWS ALBで着地させる
 
+#### DeploymentでPodをデプロイし、コンテナのデータをホストローカルに作成する
+```
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        name: web-nginx
+        app: web-nginx
+    spec:
+      volumes:
+        - name: data
+          hostPath:
+            path: /nginx-test-data
+      containers:
+      - name: nginx
+        image: nginx:1.7.9
+        ports:
+        - containerPort: 80
+          protocol: TCP
+        imagePullPolicy: Always
+        volumeMounts:
+          - name: data
+            mountPath: /nginx-data
+```
+- 確認
+```
+# pwd
+/
+# ls | grep data
+nginx-test-data
+```
+
+
 
 ## 環境構築(Mac + Vagrantパターン)
 - 環境
