@@ -546,6 +546,14 @@ Session Affinity:       None
 No events.
 ```
 
+- Podが動作しているインスタンスへログイン
+```
+$ netstat -lnt | grep 80
+tcp        0      0 10.0.1.60:80            0.0.0.0:*               LISTEN
+```
+---> NodePortを作成することにより80番がListenしたので、ここをめがけて AWS ALBで着地させる
+
+
 ## 環境構築(Mac + Vagrantパターン)
 - 環境
   - Mac(10.12.2)
