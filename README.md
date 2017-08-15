@@ -484,6 +484,54 @@ Session Affinity:	None
 No events.
 ```
 
+- NodePortを作成する
+  - Podで80番を開放しているが、外部NWから接続するためにNodeportを作成する。 
+
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-nodeport
+  labels:
+    name: web-nginx
+spec:
+  type: NodePort
+  externalIPs:
+    - 10.0.1.223
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+    nodePort: 30000
+  selector:
+    name: web-nginx
+    app: web-nginx
+```
+#### nodeportの確認
+
+`# kubectl get services`
+```
+NAME             CLUSTER-IP       EXTERNAL-IP   PORT(S)        AGE
+kubernetes       10.254.0.1       <none>        443/TCP        14d
+nginx-nodeport   10.254.147.252   10.0.1.223    80:30000/TCP   21h
+```
+
+- `# kubectl describe service nginx-nodeport`
+```
+Name:                   nginx-nodeport
+Namespace:              default
+Labels:                 name=web-nginx
+Selector:               app=web-nginx,name=web-nginx
+Type:                   NodePort
+IP:                     10.254.147.252
+External IPs:           10.0.1.223
+Port:                   <unset> 80/TCP
+NodePort:               <unset> 30000/TCP
+Endpoints:              172.30.50.2:80,172.30.56.2:80
+Session Affinity:       None
+```
+
+
 
 ## 環境構築(Mac + Vagrantパターン)
 - 環境
