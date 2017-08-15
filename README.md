@@ -491,7 +491,7 @@ No events.
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx-nodeport
+  name: nginx-nodeport-pod1
   labels:
     name: web-nginx
 spec:
@@ -511,27 +511,40 @@ spec:
 
 `# kubectl get services`
 ```
-NAME             CLUSTER-IP       EXTERNAL-IP   PORT(S)        AGE
-kubernetes       10.254.0.1       <none>        443/TCP        14d
-nginx-nodeport   10.254.147.252   10.0.1.223    80:30000/TCP   21h
-```
+NAME                  CLUSTER-IP       EXTERNAL-IP   PORT(S)        AGE
+kubernetes            10.254.0.1       <none>        443/TCP        14d
+nginx-nodeport-pod1   10.254.221.240   10.0.1.223    80:30000/TCP   1m
+nginx-nodeport-pod2   10.254.124.212   10.0.1.60     80:30001/TCP   1m```
 
-- `# kubectl describe service nginx-nodeport`
+
+- `# kubectl describe service nginx`
 ```
-Name:                   nginx-nodeport
+Name:                   nginx-nodeport-pod1
 Namespace:              default
 Labels:                 name=web-nginx
 Selector:               app=web-nginx,name=web-nginx
 Type:                   NodePort
-IP:                     10.254.147.252
+IP:                     10.254.221.240
 External IPs:           10.0.1.223
 Port:                   <unset> 80/TCP
 NodePort:               <unset> 30000/TCP
 Endpoints:              172.30.50.2:80,172.30.56.2:80
 Session Affinity:       None
+No events.
+
+Name:                   nginx-nodeport-pod2
+Namespace:              default
+Labels:                 name=web-nginx
+Selector:               app=web-nginx,name=web-nginx
+Type:                   NodePort
+IP:                     10.254.124.212
+External IPs:           10.0.1.60
+Port:                   <unset> 80/TCP
+NodePort:               <unset> 30001/TCP
+Endpoints:              172.30.50.2:80,172.30.56.2:80
+Session Affinity:       None
+No events.
 ```
-
-
 
 ## 環境構築(Mac + Vagrantパターン)
 - 環境
