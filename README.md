@@ -515,7 +515,7 @@ NAME                  CLUSTER-IP       EXTERNAL-IP   PORT(S)        AGE
 kubernetes            10.254.0.1       <none>        443/TCP        14d
 nginx-nodeport-pod1   10.254.221.240   10.0.1.223    80:30000/TCP   1m
 nginx-nodeport-pod2   10.254.124.212   10.0.1.60     80:30001/TCP   1m```
-
+```
 
 - `# kubectl describe service nginx`
 ```
