@@ -447,6 +447,8 @@ c926feff159e        nginx:1.7.9                                "nginx -g 'daemon
 7f59581a9910        gcr.io/google_containers/pause-amd64:3.0   "/pause"                 27 hours ago        Up 27 hours                             k8s_POD.b2390301_nginx-deployment-4087004473-1px8p_default_49ea4593-77f3-11e7-8a59-06839e14de9c_3b415bb9
 ```
 
+※ `k8s_POD.b2390301_nginx-deployment`のコンテナはPodを作成すると自動で作成されるPod管理用コンテナ
+
 - `# docker ps` (deploymentを削除した後)
 ```
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
