@@ -612,7 +612,9 @@ spec:
         image: mongo:latest
         ports:
         - containerPort: 28017
-          protocol: TCP```
+          protocol: TCP
+```
+
 - 確認
 ```
 # pwd
