@@ -18,7 +18,8 @@
   - pod
     - 単体作成
     - 片方削除のレプリカ機能確認
-  - service
+    - Pod内に複数コンテナ配置
+  - service
     - ingress
     - nodeport
     - lb(AWSだと利用できない...)
