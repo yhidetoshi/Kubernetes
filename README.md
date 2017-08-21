@@ -624,6 +624,11 @@ spec:
 nginx-test-data
 ```
 
+|imagePullPolicy|value|
+| :--- |:---|
+|IfNotPresent|ローカルにdocker-Imangeが無い場合に処理|
+|Always|常に|
+
 
 
 ## 環境構築(Mac + Vagrantパターン)
