@@ -40,6 +40,14 @@
 
 ![Alt Text](https://github.com/yhidetoshi/Pictures/raw/master/Docker/k8s_v1.png)
 
+**Kubernetes は各種のストレージ機能**
+
+ボリュームは
+1. リモート NFS 共有、
+1. iSCSI ターゲット
+1. 空のディレクトリ
+1. ホスト上のローカルディレクトリ
+
 
 ## Kubernetesのアーキテクチャ
 ![Alt Text](https://github.com/yhidetoshi/Pictures/raw/master/Docker/k8s-architecture.png)
