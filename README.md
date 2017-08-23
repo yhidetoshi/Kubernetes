@@ -637,6 +637,8 @@ nginx-test-data
 |IfNotPresent|ローカルにdocker-Imangeが無い場合に処理|
 |Always|常に|
 
+- イベントを確認
+  - `# kubectl get events --all-namespaces`
 
 
 ## 環境構築(Mac + Vagrantパターン)
