@@ -638,8 +638,15 @@ nginx-test-data
 |Always|常に|
 
 - イベントを確認
-  - `# kubectl get events --all-namespaces`
+    - `# kubectl get events --all-namespaces`
 
+- `# kubectl get endpoints --namespace=kube-system`
+```
+NAME                      ENDPOINTS   AGE
+kube-controller-manager   <none>      18m
+kube-scheduler            <none>      18m
+kubernetes-dashboard                  16m
+```
 
 ## 環境構築(Mac + Vagrantパターン)
 - 環境
