@@ -647,6 +647,53 @@ kube-controller-manager   <none>      18m
 kube-scheduler            <none>      18m
 kubernetes-dashboard                  16m
 ```
+## DeploymentからPod --> コンテナをデプロイする場合(Nodeのローカルにdocker image配布の場合)
+
+`# docker images`
+```
+REPOSITORY                                                   TAG                 IMAGE ID            CREATED             SIZE
+local/nginx-k8s-running                                      latest              e9992520a1ea        27 minutes ago      107.5 MB
+```
+
+- /work/deployment/nginx-phpfpm.yaml
+```
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: nginx-phpfpm
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        name: web-nginx
+        app: web-nginx
+    spec:
+      containers:
+      - name: nginx
+        image: local/nginx-k8s-running
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8000
+          protocol: TCP
+```
+
+`# kubectl get pods`
+```
+NAME                            READY     STATUS         RESTARTS   AGE
+nginx-phpfpm-3299199490-6dkdf   1/1       Running        0          9s
+nginx-phpfpm-3299199490-zr2h2   0/1       ErrImagePull   0          9s
+```
+→ 片方のノードはローカルにDokcer Imageを配布していない & レジストリにも無い ので、`ErrImagePull`
+
+`# kubectl get pods`
+```
+NAME                            READY     STATUS             RESTARTS   AGE
+nginx-phpfpm-3299199490-6dkdf   1/2       CrashLoopBackOff   4          2m
+nginx-phpfpm-3299199490-zr2h2   1/2       CrashLoopBackOff   2          2m
+```
+→ `CrashLoopBackOffは コンテナのジョブが終わると Podは役目を終わらせてこの状態になるらしい・・`
+
 
 ## 環境構築(Mac + Vagrantパターン)
 - 環境
