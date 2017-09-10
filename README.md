@@ -18,6 +18,7 @@
   - pod
     - 単体作成
     - 片方削除のレプリカ機能確認
+    - CrashLoopBackOff/Running
     - Pod内に複数コンテナ配置
   - service
     - ingress
