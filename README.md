@@ -695,6 +695,14 @@ nginx-phpfpm-3299199490-zr2h2   1/2       CrashLoopBackOff   2          2m
 ```
 → `CrashLoopBackOffは コンテナのジョブが終わると Podは役目を終わらせてこの状態になるらしい・・`
 
+### kube-systemの削除方法
+
+`# kubectl get all --all-namespaces -o wide`
+> kube-system   po/kube-dns-1784096466-r1d16              0/3       ContainerCreating   0          2d        <none>        10.0.1.60
+
+`$ kubectl delete po/kube-dns-1784096466-r1d16 --namespace=kube-system`
+> pod "kube-dns-1784096466-r1d16" deleted
+
 
 ## 環境構築(Mac + Vagrantパターン)
 - 環境
