@@ -703,6 +703,12 @@ nginx-phpfpm-3299199490-zr2h2   1/2       CrashLoopBackOff   2          2m
 `$ kubectl delete po/kube-dns-1784096466-r1d16 --namespace=kube-system`
 > pod "kube-dns-1784096466-r1d16" deleted
 
+## DNSの設定
+- `/etc/kubernetes/kubelt`
+  - master / minion1,2 に下記を追記
+```
+KUBELET_ARGS="--cluster-dns= 10.10.0.10 --cluster-domain=cluster.local"
+```
 
 ## 環境構築(Mac + Vagrantパターン)
 - 環境
