@@ -703,6 +703,15 @@ nginx-phpfpm-3299199490-zr2h2   1/2       CrashLoopBackOff   2          2m
 `$ kubectl delete po/kube-dns-1784096466-r1d16 --namespace=kube-system`
 > pod "kube-dns-1784096466-r1d16" deleted
 
+### namespaceを指定してリソースを削除する
+`# kubectl get deployment --namespace=development`
+```
+NAME           DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
+nginx-phpfpm   2         2         2            1           6h
+```
+
+(削除) `# kubectl delete deployment nginx-phpfpm --namespace=development`
+
 ## DNSの設定
 - `/etc/kubernetes/kubelt`
   - master / minion1,2 に下記を追記
